@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="https://static.wixstatic.com/media/0b340f_ba7038da69a94803a6aa7ade8b85263a~mv2.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Below Water Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #03346E;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background-color: #f0f0f0;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+        .quiz-container {
+            max-width: 800px;
+            width: 90%;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            text-align: left; /* Align text to the left */
+            position: relative;
+            margin: auto;
+            /* Centering the container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .quiz-header {
+            margin-bottom: 25px;
+            text-align: center; /* Center the header */
+        }
+        .question {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: left; /* Align question text to the left */
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .options li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .options input {
+            margin-right: 12px;
+            margin-left: 0;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #03346E;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .submit-btn:hover {
+            background: #021c44;
+        }
+        .results {
+            display: none;
+            margin-top: 25px;
+        }
+        .progress-bar {
+            width: 100%;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+        .progress {
+            width: 0;
+            height: 12px;
+            background: #03346E;
+            transition: width 0.3s ease;
+        }
+        .hint {
+            margin-top: 12px;
+            color: #666;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <img src="images/carousel_scroll_1.jpeg" alt="Ocean Background" class="background">
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>Life Below Water Quiz</h1>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <div id="quiz">
+            <!-- Quiz questions will be inserted here -->
+        </div>
+        <button class="submit-btn" onclick="submitQuiz()">Submit</button>
+        <div class="results" id="results">
+            <!-- Results will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What percentage of the Earth's surface is covered by oceans?",
+                options: ["50%", "60%", "70%", "80%"],
+                correct: "70%",
+                hint: "More than two-thirds of the Earth's surface."
+            },
+            {
+                question: "Which ocean is the largest?",
+                options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+                correct: "Pacific Ocean",
+                hint: "It's named after a term meaning 'peaceful'."
+            },
+            {
+                question: "What is the main cause of coral bleaching?",
+                options: ["Overfishing", "Pollution", "Rising sea temperatures", "Tourism"],
+                correct: "Rising sea temperatures",
+                hint: "Linked to global warming."
+            },
+            {
+                question: "Which marine species is known as the 'engineers of the sea'?",
+                options: ["Dolphins", "Octopuses", "Sea Turtles", "Coral Polyps"],
+                correct: "Coral Polyps",
+                hint: "They build reefs."
+            },
+            {
+                question: "What percentage of marine pollution comes from land-based sources?",
+                options: ["30%", "50%", "70%", "80%"],
+                correct: "80%",
+                hint: "It's the majority."
+            },
+            {
+                question: "Which ocean current is known as the world's largest ocean current?",
+                options: ["Gulf Stream", "Kuroshio Current", "Antarctic Circumpolar Current", "Agulhas Current"],
+                correct: "Antarctic Circumpolar Current",
+                hint: "It flows continuously around Antarctica."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const quizContainer = document.getElementById('quiz');
+            quizContainer.innerHTML = `
+                <div class="question">${questions[currentQuestion].question}</div>
+                <ul class="options">
+                    ${questions[currentQuestion].options.map((option, index) => `
+                        <li>
+                            <label>
+                                <input type="radio" name="option" value="${option}">
+                                ${option}
+                            </label>
+                        </li>
+                    `).join('')}
+                </ul>
+                <div class="hint">Hint: ${questions[currentQuestion].hint}</div>
+            `;
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = document.querySelector('.progress');
+            progress.style.width = `${(currentQuestion / questions.length) * 100}%`;
+        }
+
+        function submitQuiz() {
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+            if (selectedOption && selectedOption.value === questions[currentQuestion].correct) {
+                score++;
+            }
+
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const quizContainer = document.getElementById('quiz');
+            const resultsContainer = document.getElementById('results');
+            quizContainer.style.display = 'none';
+            resultsContainer.style.display = 'block';
+            resultsContainer.innerHTML = `
+                <h2>Quiz Completed!</h2>
+                <p>You scored ${score} out of ${questions.length}.</p>
+                <p>Redirecting to the homepage...</p>
+            `;
+            setTimeout(() => {
+                window.location.href = 'sample.html'; // Redirect to the sample.html
+            }, 3000); // 3 seconds delay before redirect
+        }
+
+        // Initial load
+        loadQuestion();
+    </script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSite</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="icon" href="https://static.wixstatic.com/media/0b340f_ba7038da69a94803a6aa7ade8b85263a~mv2.png" type="image/x-icon"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .background-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .background-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+        .hero-section {
+            padding: 60px 0;
+            color: #03346E;
+        }
+        .images-section {
+            padding: 0;
+            margin: 0;
+        }
+        .images-section .row {
+            margin: 0;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .images-section .col-md-2 {
+            padding: 0;
+            flex: 1;
+            position: relative;
+        }
+        .images-section img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+        .image-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background: none;
+        }
+        .header-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-right: 10px;
+        }
+        .header-title {
+            color: #03346E;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-pills .nav-link {
+            color: #03346E;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #03346E;
+        }
+        .what-we-do-section {
+            padding: 4em 1em;
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .what-we-do-section .title {
+            font-size: 3em;
+            color: #03346E;
+            font-weight: bold;
+            margin-bottom: 2em;
+        }
+        .what-we-do-section .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2em;
+        }
+        .what-we-do-section .section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            padding: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .what-we-do-section .icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1em;
+            object-fit: contain;
+        }
+        .what-we-do-section .heading {
+            font-size: 1.5em;
+            color: #03346E;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+        .what-we-do-section .description {
+            font-size: 1em;
+            text-align: center;
+            line-height: 1.5;
+            color: #555;
+        }
+        .what-we-do-section .description a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        .what-we-do-section .description a:hover {
+            text-decoration: underline;
+        }
+        .hero-section .btn {
+            margin-top: 20px;
+            background-color: #03346E; /* Primary color */
+            color: white;
+            border: none;
+            border-radius: 10px; /* Rounded corners */
+            padding: 12px 30px; /* Padding */
+            font-size: 18px; /* Font size */
+            font-weight: bold; /* Font weight */
+            text-transform: none; /* Uppercase text */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Transitions for hover effects */
+        }
+        .hero-section .btn:hover {
+            background-color: #021c44; /* Darker shade on hover */
+            transform: scale(1.05); /* Slightly larger on hover */
+        }
+
+        .new-image-section {
+            padding: 0;
+            margin: 0;
+            overflow: hidden; /* Ensure no overflow is visible */
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .image-container img {
+            width: calc(100% / 3); /* 3 images per row */
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        .signup-section {
+            padding: 80px 20px; /* Adjust padding for more space */
+            background-color: rgba(255, 255, 255, 0); /* Transparent background */
+            text-align: center;
+            margin-top: 80px; /* Gap between sections */
+        }
+
+        .signup-container {
+            max-width: 900px; /* Increased max-width */
+            margin: 0 auto;
+            padding: 30px; /* Increased padding inside the container */
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            /* Removed border, border-radius, and box-shadow */
+        }
+
+        .signup-container h2 {
+            color: #03346E; /* Project color */
+            margin-bottom: 60px; /* Increased space between header and row elements */
+            font-size: 36px; /* Increased font size */
+            font-weight: bold; /* Make the text bold */
+        }
+
+        .signup-container .form-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Gap between elements */
+        }
+
+        .signup-container input[type="text"],
+        .signup-container input[type="email"] {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 0; /* Edged corners */
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+        }
+
+        .signup-container button {
+            background-color: #03346E; /* Consistent with project styling */
+            color: white;
+            padding: 12px 24px; /* Increased padding for better appearance */
+            border: none;
+            border-radius: 0; /* Edged corners */
+            cursor: pointer;
+            font-weight: 600; /* Slightly bolder text */
+        }
+
+        .signup-container button:hover {
+            background-color: #021c44; /* Darker shade on hover */
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+            backdrop-filter: blur(5px); /* Blurred background */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: #03346E;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .modal-content p {
+            color: #555;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-between align-items-center py-3 mb-4 border-bottom">
+            <div class="d-flex align-items-center">
+                <img src="https://static.wixstatic.com/media/0b340f_ba7038da69a94803a6aa7ade8b85263a~mv2.png" alt="Logo" class="header-logo">
+                <span class="header-title">AquaSite</span>
+            </div>
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/carousel/index_1.html" class="nav-link">Carousel</a></li>
+                <li class="nav-item"><a href="#image-gallery" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="test.html" class="nav-link">Quiz</a></li>
+                <li class="nav-item"><a href="#what-we-do" class="nav-link">About</a></li>
+            </ul>
+        </header>
+    </div>
+    <div class="background-section">
+        <video id="comp-lt8qtfl7_video" crossorigin="anonymous" playsinline="" preload="auto" muted="" loop="" autoplay="" src="https://video.wixstatic.com/video/84770f_0082721cf7884b7b8eaef3cdf7ce3ace/1080p/mp4/file.mp4"></video>
+        <div class="overlay">
+            <h1 class="display-4 fw-bold lh-1">Welcome to AquaSite</h1>
+            <p class="lead">Your go-to platform for marine conservation and oceanic awareness.</p>
+        </div>
+    </div>
+    <div class="container-fluid images-section">
+        <div class="row no-gutters">
+            <div class="col-md-2">
+                <img src="/images/marine_life_1.webp" alt="Marine Life 1">
+                <div class="image-text-overlay">Coral Bleaching</div>
+            </div>
+            <div class="col-md-2">
+                <img src="/images/marine_life_2.webp" alt="Marine Life 2">
+                <div class="image-text-overlay">Plastic Pollution</div>
+            </div>
+            <div class="col-md-2">
+                <img src="/images/marine_life_3.webp" alt="Marine Life 3">
+                <div class="image-text-overlay">Protect Coastlines</div>
+            </div>
+            <div class="col-md-2">
+                <img src="images/marine_life_4.webp" alt="Marine Life 4">
+                <div class="image-text-overlay">Coral Reefs in Danger</div>
+            </div>
+            <div class="col-md-2">
+                <img src="/images/marine_life_5.jpeg" alt="Marine Life 5">
+                <div class="image-text-overlay">End Beach Dumping</div>
+            </div>
+        </div>
+    </div>
+    <div id="what-we-do" class="what-we-do-section">
+        <div class="what-we-do-section">
+            <h1 class="title">What We Do</h1>
+            <div class="row">
+                <div class="section">
+                    <img src="images/what_do_we_do_1.webp" alt="Beach Cleanups" class="icon">
+                    <h2 class="heading">Beach Cleanups</h2>
+                    <p class="description">We organize beach cleanups to remove waste and protect marine life. Click <a href="#image-gallery">here</a> to learn more about our initiatives.</p>
+                </div>
+                <div class="section">
+                    <img src="images/what_do_we_do_2.webp" alt="Raising Awareness" class="icon">
+                    <h2 class="heading">Raising Awareness</h2>
+                    <p class="description">We raise awareness about oceanic issues through educational campaigns. Click <a href="/carousel/index_1.html">here</a> to see how you can get involved.</p>
+                </div>
+                <div class="section">
+                    <img src="images/what_do_we_do_3.webp" alt="Building A Community" class="icon">
+                    <h2 class="heading">Building A Community</h2>
+                    <p class="description">We foster a community of ocean enthusiasts to work together on conservation projects. Click <a href="pledge_form.html">here</a> to join our community.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-section">
+        <div class="container">
+            <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+                <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                    <h1 class="display-4 fw-bold lh-1">Take the Pledge</h1>
+                    <p class="lead">Commit to marine protection by taking our pledge. Your promise to adopt sustainable practices and support conservation efforts will help safeguard our oceans and their incredible biodiversity. Join us in making a difference.</p>
+                    <a href="pledge_form.html" class="btn btn-primary btn-lg">Act Now</a> <!-- Button added here -->
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <img src="https://static.wixstatic.com/media/0b340f_b7454bb734764c2293e04920c952a301~mv2_d_4132_2754_s_4_2.jpg/v1/fill/w_950,h_1050,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_auto/0b340f_b7454bb734764c2293e04920c952a301~mv2_d_4132_2754_s_4_2.jpg" class="img-fluid rounded-3" alt="Hero Image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="image-gallery" class="new-image-section">
+        <div class="image-container">
+            <img src="images/gallery_img_1.webp" alt="New Image 1">
+            <img src="images/gallery_img_2.webp" alt="New Image 2">
+            <img src="images/gallery_img_3.webp" alt="New Image 3">
+            <img src="images/gallery_img_5.webp" alt="New Image 4">
+            <img src="images/gallery_img_6.jpg" alt="New Image 5">
+            <img src="images/gallery_img_4.webp" alt="New Image 6">
+        </div>
+    </section>
+    <section class="signup-section">
+        <div class="signup-container">
+            <h2>Sign up to our mailing list</h2>
+            <form id="signupForm">
+                <div class="form-row">
+                    <input type="text" id="name" placeholder="Name" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Thank You!</h2>
+            <p>Your submission has been received. We will get back to you shortly.</p>
+        </div>
+    </div>
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 AquaSite, Inc</span>
+        </div>
+      
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3">
+            <a class="text-body-secondary" href="https://x.com/Hare_krsna__">
+              <i class="bi-twitter bi-lg"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="https://www.instagram.com/janai_katsura_da/?next=%2F&hl=en">
+              <i class="bi-instagram bi-lg"></i>
+            </a>
+          </li>
+          <li class="ms-3">
+            <a class="text-body-secondary" href="https://www.facebook.com/venkatasainikhil.narravula">
+              <i class="bi-facebook bi-lg"></i>
+            </a>
+          </li>
+        </ul>
+      </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-mQ93ONpGgXK19O6s5ktygW2Qd2MBfg7mojzq5ZZezCR/6ZZ2VrS5lA4LB6ExNJZ0w" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-Yk3f4L9pF1f3nqO8lC6d8+pfKEB6YYW5W5d44SyGFZ8GzknDZjKAE2j29JwKjY6ST" crossorigin="anonymous"></script>
+    <script>
+       document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+    
+    // Display the modal
+            document.getElementById('myModal').style.display = 'block';
+        });
+
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName('close')[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.js"></script>
+</body>
+</html>

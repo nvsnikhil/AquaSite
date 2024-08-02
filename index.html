@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <link rel="icon" href="https://static.wixstatic.com/media/0b340f_ba7038da69a94803a6aa7ade8b85263a~mv2.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AquaSite - Digital Initiative for Marine Conservation">
+    <title>AquaSite Cover Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        color: #03346E; /* Custom Dark Blue */
+        overflow: hidden; /* Prevent scrolling to hide background image */
+        position: relative; /* Ensure relative positioning for the z-index to work */
+        background-color: #03346E; /* Set a fallback background color */
+      }
+
+      .background-video {
+        position: fixed; /* Ensures the video stays fixed */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Cover the entire background */
+        z-index: -1; /* Place the video behind other content */
+      }
+
+      .cover-container {
+        position: relative; /* Position relative to ensure content is above background video */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 0 20px;
+        background: rgba(255, 255, 255, 0.1); /* Adjusted transparency */
+        border-radius: 0; /* Removed rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better contrast */
+        z-index: 1; /* Ensure content is above the background video */
+      }
+
+      .cover-container .logo img {
+        max-width: 120px; /* Reduced size */
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 3em; /* Adjusted size */
+        margin-bottom: 10px;
+        font-weight: 700; /* Bold weight */
+        color: #03346E; /* Custom Dark Blue */
+        letter-spacing: 1px; /* Slightly spaced letters */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Enhanced text shadow */
+      }
+
+      h2 {
+        font-size: 2.2em; /* Slightly increased size */
+        margin-bottom: 20px;
+        color: #ffffff; /* Set text color to white */
+        font-weight: 600; /* Increased weight for better visibility */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Enhanced text shadow for better contrast */
+      }
+
+      .highlight {
+        color: #003366; /* Even darker Navy Blue */
+        font-weight: 700; /* Bold weight */
+        font-size: 1.2em; /* Slightly larger font size */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Enhanced text shadow for better visibility */
+        padding: 0; /* Remove padding */
+        border-radius: 0; /* Remove rounded corners */
+        text-decoration: none; /* Remove underline */
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+      }
+
+      .highlight:hover {
+        color: #00bfff; /* Sky Blue */
+        text-shadow: 0 0 10px rgba(0, 191, 255, 0.8); /* Futuristic glowing effect */
+      }
+
+      p {
+        font-size: 1.4em; /* Increased size */
+        margin-bottom: 20px;
+        line-height: 1.5;
+        color: #ffffff; /* Set text color to white */
+        font-weight: 600; /* Bold weight */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow for better contrast */
+      }
+
+      .btn-custom {
+        padding: 15px 30px;
+        font-size: 1.1em;
+        color: #ffffff;
+        background-color: #004080; /* Dark Navy Blue */
+        border: none;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 700; /* Bold text */
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .btn-custom:hover {
+        background-color: #003366; /* Even darker Navy Blue */
+        transform: scale(1.05);
+      }
+
+      footer {
+        margin-top: 30px;
+        color: #b0e0e6; /* Light Steel Blue */
+      }
+
+      footer a {
+        color: #00bfff; /* Sky Blue */
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .sanatani {
+        font-weight: bold; /* Make the text bold */
+        color: #003366; /* Dark Navy Blue */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a shadow for better visibility */
+        font-size: 1.2em; /* Slightly larger font size */
+        transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition on hover */
+      }
+
+      .sanatani:hover {
+        color: #001f3f; /* Slightly darker Navy Blue on hover */
+        transform: scale(1.1); /* Slightly increase size on hover */
+        text-decoration: underline; /* Add underline on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Ensure the video path is correct and the video is high resolution -->
+    <video autoplay muted loop class="background-video" id="background-video">
+      <source src="images/cover_page_bg_video (1).mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="cover-container">
+      <div class="content">
+        <div class="logo">
+          <img src="https://static.wixstatic.com/media/0b340f_ba7038da69a94803a6aa7ade8b85263a~mv2.png" alt="AquaSite Logo">
+        </div>
+        <h1>AquaSite</h1>
+        <h2>Protecting <a href="https://www.globalgoals.org/goals/14-life-below-water/" class="highlight">Life Below Water</a> Through Trust</h2>
+        <p>Join us in our mission to advance marine conservation with digital solutions and ancient wisdom.</p>
+        <p class="lead">
+          <a href="sample.html" class="btn-custom">Get Involved</a>
+        </p>
+      </div>
+      <footer>
+        <p>Created for <a href="sample.html">AquaSite</a> by <a href="https://www.linkedin.com/in/nikhil-chowdary-147591255?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BmcH2yMv%2FTDi2Rz6XHN1j5Q%3D%3D" class="sanatani">Sanatani</a>.</p>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      const video = document.getElementById('background-video');
+      video.addEventListener('ended', () => {
+        video.play(); // Replay the video immediately after it ends
+      });
+    </script>
+  </body>
+</html>
